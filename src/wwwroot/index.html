@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Fancy Redirect - frdr.it</title>
+        <link rel="stylesheet" href="/assets/css/app.css">
+    </head>
+    <body>
+        <article>
+            <h1>frdr.it</h1>
+            
+            <!-- CREATE -->
+            <section>
+                <h2>Create</h2>
+
+                <form>
+                    <label for="CreateNewUrl">URL to shortify:</label><br>
+                    <input type="url" id="CreateNewUrl" placeholder="Enter URL to shortify">
+                    <input type="submit" id="Create" value="Create">
+                </form>
+
+                <p>
+                    <span id="CreatedUrl">
+                        Enter URL above to create a shortened version of it.
+                    </span>
+                </p>
+            </section>
+            
+            <!-- REVEAL -->
+            <section>
+                <h2>Reveal</h2>
+
+                <form>
+                    <label for="RevealUrl">URL to reveal:</label><br>
+                    <input type="url" id="RevealUrl" placeholder="Enter shortened URL to reveal its destination">
+                    <input type="submit" id="Reveal" value="Reveal">
+                </form>
+
+                <p>
+                    <span id="RevealedUrl">
+                        Enter shortened URL above to reveal the real URL it will redirect to.
+                    </span>
+                </p>
+            </section>
+        </article>
+        <script src="/assets/js/app.js"></script>
+        
+        <!-- TODO: Analytics! -->
+    </body>
+</html>
