@@ -105,28 +105,25 @@ namespace UrlShortify
         /// </summary>
         public static void Load()
         {
-            lock (UrlEntries)
+            try
             {
-                try
-                {
-                    StoragePath = Path.Combine(
-                        Directory.GetCurrentDirectory(),
-                        "storage.json");
+                StoragePath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "storage.json");
 
-                    if (!File.Exists(StoragePath))
-                    {
-                        throw new FileNotFoundException(
-                            "Storage file not found. Creating a new one.",
-                            StoragePath);
-                    }
-
-                    UrlEntries = JsonSerializer.Deserialize<Dictionary<string, string>>(
-                        File.ReadAllText(StoragePath));
-                }
-                catch
+                if (!File.Exists(StoragePath))
                 {
-                    UrlEntries = new Dictionary<string, string>();
+                    throw new FileNotFoundException(
+                        "Storage file not found. Creating a new one.",
+                        StoragePath);
                 }
+
+                UrlEntries = JsonSerializer.Deserialize<Dictionary<string, string>>(
+                    File.ReadAllText(StoragePath));
+            }
+            catch
+            {
+                UrlEntries = new Dictionary<string, string>();
             }
         }
 
