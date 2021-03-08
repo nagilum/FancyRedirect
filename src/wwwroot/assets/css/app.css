@@ -1,3 +1,122 @@
 ﻿* {
     box-sizing: border-box;
 }
+
+body {
+    background-color: #1d1f21;
+    color: #c9cacc;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 400;
+    height: 100%;
+    line-height: 1.725;
+    margin: 0;
+    padding: 0;
+    text-rendering: geometricPrecision;
+}
+
+    body a {
+        border-bottom: solid 1px #eee;
+        color: #fff;
+        text-decoration: none;
+    }
+
+        body a:hover {
+            border-color: #2b9cca;
+        }
+
+    body article {
+        margin: 0 auto;
+        height: 100%;
+        padding: 0 0 100px;
+        width: 700px;
+    }
+
+        body article h1 {
+            color: #2b9cca;
+            display: block;
+            font-size: 1.5rem;
+            letter-spacing: 0.01em;
+            line-height: 1.25;
+            margin: 0;
+            padding: 2.5rem 0 1rem;
+            position: relative;
+            text-transform: none;
+        }
+
+        body article section {
+            margin: 0;
+            padding: 0;
+        }
+
+            body article section h2 {
+                color: #eee;
+                display: block;
+                font-size: 1.5rem;
+                letter-spacing: 0.01em;
+                line-height: 1.25;
+                margin: 1rem 0 0;
+                padding: 0;
+                position: relative;
+                text-transform: none;
+            }
+
+                body article section h2::before {
+                    color: #2b9cca;
+                    content: "#";
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    left: -1.3rem;
+                    position: absolute;
+                    top: 0;
+                }
+
+            body article section form {
+                margin: 0;
+                padding: 0;
+            }
+
+                body article section form label {
+                    cursor: pointer;
+                }
+
+                body article section form input[type=url] {
+                    padding: .5rem;
+                    width: 85%;
+                }
+
+                body article section form input[type=submit] {
+                    padding: .5rem;
+                }
+
+            body article section p {
+                margin: 0;
+                padding: 0;
+            }
+
+    body footer {
+        bottom: 0;
+        margin: 0;
+        padding: 0 0 10px;
+        position: absolute;
+    }
+
+@media screen and (max-width: 720px) {
+    body article {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+    }
+
+        body article section h2::before {
+            display: none;
+        }
+
+        body article section form input[type=url] {
+            width: 100%;
+        }
+
+        body article section form input[type=submit] {
+            width: 100%;
+        }
+}

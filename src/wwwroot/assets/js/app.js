@@ -30,7 +30,7 @@ const CreateNewUrl = (e) => {
             }
             else if (obj.url) {
                 document.querySelector('span#CreatedUrl')
-                    .innerHTML = `<a href="${obj.url}">${obj.url}</a>`;
+                    .innerHTML = `Shortened URL: <a href="${obj.url}">${obj.url}</a>`;
             }
             else {
                 throw new Error('Not a valid response from API.');
@@ -73,7 +73,7 @@ const RevealUrl = (e) => {
             }
             else if (obj.url) {
                 document.querySelector('span#RevealedUrl')
-                    .innerHTML = `<a href="${obj.url}">${obj.url}</a>`;
+                    .innerHTML = `Original URL: <a href="${obj.url}">${obj.url}</a>`;
             }
             else {
                 throw new Error('Not a valid response from API.');
