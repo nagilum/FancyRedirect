@@ -14,7 +14,7 @@ namespace UrlShortify.Controllers
         /// Create a short URL from given URL.
         /// </summary>
         [HttpGet]
-        [RequestRateLimit(Name = "Create", Seconds = 5)]
+        [RequestRateLimit(Name = "Create", Seconds = 2)]
         public ActionResult Create([FromQuery] string url)
         {
             if (string.IsNullOrWhiteSpace(url))
