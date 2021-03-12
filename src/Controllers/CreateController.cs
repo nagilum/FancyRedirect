@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UrlShortify.Controllers
@@ -23,7 +24,21 @@ namespace UrlShortify.Controllers
 
             url = HttpUtility.UrlDecode(url);
 
-            var code = Storage.GetCode(url);
+            Uri uri;
+
+            try
+            {
+                uri = new Uri(url);
+            }
+            catch
+            {
+                return this.BadRequest(new
+                {
+                    message = "Invalid URL."
+                });
+            }
+
+            var code = Storage.GetCode(uri);
 
             if (code == null)
             {

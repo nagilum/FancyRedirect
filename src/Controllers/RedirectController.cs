@@ -12,9 +12,9 @@ namespace UrlShortify.Controllers
         [HttpGet("{code}")]
         public ActionResult PerformRedirect([FromRoute] string code)
         {
-            var url = Storage.GetUrl(code);
+            var uri = Storage.GetUrl(code);
 
-            if (url == null)
+            if (uri == null)
             {
                 return this.NotFound(new
                 {
@@ -22,7 +22,7 @@ namespace UrlShortify.Controllers
                 });
             }
 
-            return this.RedirectPermanent(url);
+            return this.RedirectPermanent(uri.ToString());
         }
     }
 }

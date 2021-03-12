@@ -15,7 +15,7 @@ namespace UrlShortify
         /// <summary>
         /// Stored URL entries.
         /// </summary>
-        private static Dictionary<string, string> UrlEntries { get; set; }
+        private static Dictionary<string, Uri> UrlEntries { get; set; }
 
         #region Get functions
 
@@ -24,7 +24,7 @@ namespace UrlShortify
         /// </summary>
         /// <param name="url">URL to get code for.</param>
         /// <returns>Code.</returns>
-        public static string GetCode(string url)
+        public static string GetCode(Uri url)
         {
             string code;
 
@@ -86,7 +86,7 @@ namespace UrlShortify
         /// </summary>
         /// <param name="code">Code to fetch for.</param>
         /// <returns>Full URL.</returns>
-        public static string GetUrl(string code)
+        public static Uri GetUrl(string code)
         {
             lock (UrlEntries)
             {
@@ -118,12 +118,12 @@ namespace UrlShortify
                         StoragePath);
                 }
 
-                UrlEntries = JsonSerializer.Deserialize<Dictionary<string, string>>(
+                UrlEntries = JsonSerializer.Deserialize<Dictionary<string, Uri>>(
                     File.ReadAllText(StoragePath));
             }
             catch
             {
-                UrlEntries = new Dictionary<string, string>();
+                UrlEntries = new Dictionary<string, Uri>();
             }
         }
 
