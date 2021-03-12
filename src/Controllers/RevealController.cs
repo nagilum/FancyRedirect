@@ -13,7 +13,7 @@ namespace UrlShortify.Controllers
         /// Reveal a shortened URL.
         /// </summary>
         [HttpGet]
-        [RequestRateLimit(Name = "Create", Seconds = 5)]
+        [RequestRateLimit(Name = "Reveal", Seconds = 2)]
         public ActionResult Reveal([FromQuery] string url)
         {
             url = HttpUtility.UrlDecode(url);
