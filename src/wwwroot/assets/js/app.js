@@ -7,10 +7,16 @@ const CreateNewUrl = (e) => {
     e.preventDefault();
 
     const url = document.querySelector('input#CreateNewUrl').value.trim();
+    const status = document.querySelector('span#CreatedUrl');
 
     if (url === '') {
-        alert('URL is required.');
+        status.classList.add('error');
+        status.classList.remove('success');
+        status.innerHTML = `URL is required.`;
+
         document.querySelector('input#CreateNewUrl').focus();
+
+        return null;
     }
 
     return fetch(`/api/create?url=${encodeURIComponent(url)}`)
@@ -26,19 +32,21 @@ const CreateNewUrl = (e) => {
         })
         .then(obj => {
             if (obj.message) {
-                alert(obj.message);
+                throw new Error(obj.message);
             }
             else if (obj.url) {
-                document.querySelector('span#CreatedUrl')
-                    .innerHTML = `Shortened URL: <a href="${obj.url}">${obj.url}</a>`;
+                status.classList.remove('error');
+                status.classList.add('success');
+                status.innerHTML = `Shortened URL: <a href="${obj.url}">${obj.url}</a>`;
             }
             else {
                 throw new Error('Not a valid response from API.');
             }
         })
         .catch(err => {
-            console.log(err);
-            alert(err);
+            status.classList.add('error');
+            status.classList.remove('success');
+            status.innerHTML = `${err}`;
         });
 };
 
@@ -49,10 +57,16 @@ const RevealUrl = (e) => {
     e.preventDefault();
 
     const url = document.querySelector('input#RevealUrl').value.trim();
+    const status = document.querySelector('span#RevealedUrl');
 
     if (url === '') {
-        alert('URL is required.');
+        status.classList.add('error');
+        status.classList.remove('success');
+        status.innerHTML = `URL is required.`;
+
         document.querySelector('input#RevealUrl').focus();
+
+        return null;
     }
 
     return fetch(`/api/reveal?url=${encodeURIComponent(url)}`)
@@ -69,19 +83,21 @@ const RevealUrl = (e) => {
         })
         .then(obj => {
             if (obj.message) {
-                alert(obj.message);
+                throw new Error(obj.message);
             }
             else if (obj.url) {
-                document.querySelector('span#RevealedUrl')
-                    .innerHTML = `Original URL: <a href="${obj.url}">${obj.url}</a>`;
+                status.classList.remove('error');
+                status.classList.add('success');
+                status.innerHTML = `Original URL: <a href="${obj.url}">${obj.url}</a>`;
             }
             else {
                 throw new Error('Not a valid response from API.');
             }
         })
         .catch(err => {
-            console.log(err);
-            alert(err);
+            status.classList.add('error');
+            status.classList.remove('success');
+            status.innerHTML = `${err}`;
         });
 };
 

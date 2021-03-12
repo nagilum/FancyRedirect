@@ -94,6 +94,14 @@ body {
                 padding: 0;
             }
 
+                body article section p span.error {
+                    color: red;
+                }
+
+                body article section p span.success {
+                    color: greenyellow;
+                }
+
     body footer {
         bottom: 0;
         margin: 0;
