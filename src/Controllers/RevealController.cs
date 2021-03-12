@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using FancyRedirect.DataHandlers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UrlShortify.Controllers

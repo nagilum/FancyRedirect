@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
-namespace UrlShortify
+namespace FancyRedirect.DataHandlers
 {
     public class Storage
     {

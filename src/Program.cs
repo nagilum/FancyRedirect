@@ -1,3 +1,4 @@
+using FancyRedirect.DataHandlers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 

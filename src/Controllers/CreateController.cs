@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web;
+using FancyRedirect.Attributes;
+using FancyRedirect.DataHandlers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UrlShortify.Controllers
@@ -12,6 +14,7 @@ namespace UrlShortify.Controllers
         /// Create a short URL from given URL.
         /// </summary>
         [HttpGet]
+        [RequestRateLimit(Name = "Create", Seconds = 5)]
         public ActionResult Create([FromQuery] string url)
         {
             if (string.IsNullOrWhiteSpace(url))

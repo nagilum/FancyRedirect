@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FancyRedirect.Attributes;
+using FancyRedirect.DataHandlers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace UrlShortify.Controllers
 {
@@ -10,6 +12,7 @@ namespace UrlShortify.Controllers
         /// Redirect the incoming request to a new outgoing URL.
         /// </summary>
         [HttpGet("{code}")]
+        [RequestRateLimit(Name = "Create", Seconds = 5)]
         public ActionResult PerformRedirect([FromRoute] string code)
         {
             var uri = Storage.GetUrl(code);
