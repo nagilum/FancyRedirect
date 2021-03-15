@@ -33,3 +33,6 @@ Possible Response Code:
 
 ## Problems?
 Having problems using the service, either the API or the interface, feel free to contact me or create an issue here on the GitHub repo.
+
+## Credit
+Icon made by [DinosoftLabs](https://www.flaticon.com/authors/dinosoftlabs) from [Flaticon](https://www.flaticon.com/)
