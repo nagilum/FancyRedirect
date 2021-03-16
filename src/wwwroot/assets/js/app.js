@@ -24,6 +24,7 @@ const CreateNewUrl = (e) => {
             switch (res.status) {
                 case 200:
                 case 400:
+                case 429:
                     return res.json();
 
                 default:
@@ -75,6 +76,7 @@ const RevealUrl = (e) => {
                 case 200:
                 case 400:
                 case 404:
+                case 429:
                     return res.json();
 
                 default:

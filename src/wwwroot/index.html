@@ -4,18 +4,28 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Fancy Redirect - frdr.it</title>
-        <link rel="stylesheet" href="/assets/css/app.css">
+
+        <link rel="stylesheet" href="/assets/css/app.css?v=1.1">
+        <link rel="icon" href="/assets/img/url.svg?v=1.1">
+
+        <meta property="og:title" content="Fancy Redirect - frdr.it">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://frdr.it/assets/img/url.svg">
+        <meta property="og:url" content="https://frdr.it/">
+        <meta property="og:description" content="Fancy Redirect (frdr.it) is a simple URL shortener service.">
+        <meta property="og:locale" content="en_US">
+        <meta property="og:site_name" content="Fancy Redirect">
     </head>
     <body>
         <article>
             <h1>Fancy Redirect</h1>
-            
+
             <div>
                 Fancy Redirect (<a href="https://frdr.it">frdr.it</a>) is a simple URL shortener service.
                 Enter the URL you want shortened and it will give you a frdr.it version of it.
                 Below you can also enter the frdr.it shortened URL and reveal the URL it will redirect too.
             </div>
-            
+
             <!-- CREATE -->
             <section>
                 <h2>Create</h2>
@@ -32,7 +42,7 @@
                     </span>
                 </p>
             </section>
-            
+
             <!-- REVEAL -->
             <section>
                 <h2>Reveal</h2>
@@ -51,11 +61,20 @@
             </section>
             <footer>
                 &copy; 2021 Stian Hanger<br>
-                <a href="https://github.com/nagilum/fancyredirect">https://github.com/nagilum/fancyredirect</a>
+                <a href="https://github.com/nagilum/fancyredirect">https://github.com/nagilum/fancyredirect</a><br>
+                See the GitHub repo for API access.
             </footer>
         </article>
-        <script src="/assets/js/app.js"></script>
-        
-        <!-- TODO: Analytics! -->
+        <script src="/assets/js/app.js?v=1.1"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJK0PEWTDZ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-LJK0PEWTDZ');
+        </script>
     </body>
 </html>
