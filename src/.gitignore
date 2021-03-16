@@ -6,3 +6,4 @@ Properties/
 appsettings.*
 *.user
 storage.json
+storage.sqlite.db
