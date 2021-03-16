@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using FancyRedirect.Attributes;
 using FancyRedirect.DataHandlers;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace UrlShortify.Controllers
         /// Reveal a shortened URL.
         /// </summary>
         [HttpGet]
-        [RequestRateLimit(Name = "Create", Seconds = 5)]
+        [RequestRateLimit(Name = "Reveal", Seconds = 5)]
         public ActionResult Reveal([FromQuery] string url)
         {
             url = HttpUtility.UrlDecode(url);
@@ -30,7 +31,21 @@ namespace UrlShortify.Controllers
                 });
             }
 
-            var fullUrl = Storage.GetUrl(code);
+            Uri fullUrl = null;
+
+            try
+            {
+                var entry = StorageHandler.GetByCode(code, false);
+
+                if (entry != null)
+                {
+                    fullUrl = new Uri(entry.Url);
+                }
+            }
+            catch
+            {
+                // TODO
+            }
 
             if (fullUrl == null)
             {

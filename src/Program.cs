@@ -11,8 +11,8 @@ namespace UrlShortify
         /// </summary>
         public static void Main(string[] args)
         {
-            // Load URL entries.
-            Storage.Load();
+            // Create the database and table.
+            StorageHandler.CreateTable();
 
             // Init the host.
             Host.CreateDefaultBuilder(args)

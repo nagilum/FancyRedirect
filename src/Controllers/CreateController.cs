@@ -41,7 +41,16 @@ namespace UrlShortify.Controllers
                 });
             }
 
-            var code = Storage.GetCode(uri);
+            string code = null;
+
+            try
+            {
+                code = StorageHandler.GetOrInsertByUri(uri)?.Code;
+            }
+            catch
+            {
+                // TODO
+            }
 
             if (code == null)
             {
