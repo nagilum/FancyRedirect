@@ -26,7 +26,9 @@ namespace FancyRedirect.DataHandlers
         {
             // Define the full storaget path.
             StoragePath = Path.Combine(
-                Directory.GetCurrentDirectory(),
+                Environment.GetFolderPath(
+                    Environment.SpecialFolder.ApplicationData,
+                    Environment.SpecialFolderOption.Create),
                 "storage.sqlite.db");
 
             // If the file already exist, skip this.
@@ -80,7 +82,7 @@ namespace FancyRedirect.DataHandlers
             }
 
             entry.LastUsed = DateTimeOffset.Now.ToString();
-            entry.Hits++;
+            entry.Hits += 1;
 
             db.SaveChanges();
 
