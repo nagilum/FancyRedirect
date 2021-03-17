@@ -17,6 +17,8 @@ namespace UrlShortify
             try
             {
                 StorageHandler.CreateTable();
+
+                Console.WriteLine($"StoragePath: {StorageHandler.StoragePath}");
             }
             catch (Exception ex)
             {
