@@ -21,6 +21,9 @@ namespace FancyRedirect.DataHandlers
         public string LastUsed { get; set; }
 
         [Column]
+        public int Hits { get; set; }
+
+        [Column]
         public string Code { get; set; }
 
         [Column]

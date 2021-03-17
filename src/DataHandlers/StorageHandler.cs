@@ -44,6 +44,7 @@ namespace FancyRedirect.DataHandlers
                     "  [Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                     "  [Created] NVARCHAR(32) NOT NULL," +
                     "  [LastUsed] NVARCHAR(32)," +
+                    "  [Hits] INTEGER DEFAULT 0," +
                     "  [Code] NVARCHAR(32) NOT NULL," +
                     "  [Url] NVARCHAR(2048) NOT NULL" +
                     ");";
@@ -69,20 +70,22 @@ namespace FancyRedirect.DataHandlers
         /// <summary>
         /// Get an entry by code, and possibly update last-used.
         /// </summary>
-        public static UrlEntry GetByCode(string code, bool updateLastUsed)
+        public static UrlEntry GetByCode(string code, bool updateLastUsedAndUpdateHits)
         {
             using var db = new DatabaseContext();
 
             var entry = db.UrlEntries
                 .FirstOrDefault(n => n.Code == code);
 
-            if (!updateLastUsed ||
+            if (!updateLastUsedAndUpdateHits ||
                 entry == null)
             {
                 return entry;
             }
 
             entry.LastUsed = DateTimeOffset.Now.ToString();
+            entry.Hits++;
+
             db.SaveChanges();
 
             return entry;
