@@ -24,7 +24,7 @@ namespace FancyRedirect.Controllers
             }
             catch
             {
-                // TODO
+                // TODO: Log to console/env.
             }
 
             if (list == null)

@@ -53,7 +53,7 @@ namespace FancyRedirect.DataHandlers
             }
             catch
             {
-                // TODO
+                // TODO: Log to console/env.
             }
         }
 

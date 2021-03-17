@@ -29,7 +29,7 @@ namespace UrlShortify.Controllers
             }
             catch
             {
-                // TODO
+                // TODO: Log to console/env.
             }
 
             if (uri == null)

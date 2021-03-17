@@ -44,7 +44,7 @@ namespace UrlShortify.Controllers
             }
             catch
             {
-                // TODO
+                // TODO: Log to console/env.
             }
 
             if (fullUrl == null)
