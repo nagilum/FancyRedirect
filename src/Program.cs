@@ -1,3 +1,4 @@
+using System;
 using FancyRedirect.DataHandlers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -13,7 +14,21 @@ namespace UrlShortify
         public static void Main(string[] args)
         {
             // Create the database and table.
-            StorageHandler.CreateTable();
+            try
+            {
+                StorageHandler.CreateTable();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("CRITICAL ERROR");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine();
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine();
+                Console.WriteLine("ABORTING/EXITING THE APPLICATION!");
+
+                return;
+            }
 
             // Init the host.
             Host.CreateDefaultBuilder(args)

@@ -2,6 +2,7 @@
 using FancyRedirect.Attributes;
 using FancyRedirect.DataHandlers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace UrlShortify.Controllers
 {
@@ -9,6 +10,19 @@ namespace UrlShortify.Controllers
     [ApiController]
     public class RedirectController : ControllerBase
     {
+        /// <summary>
+        /// Local logger.
+        /// </summary>
+        private readonly ILogger Logger;
+
+        /// <summary>
+        /// Setup logger.
+        /// </summary>
+        public RedirectController(ILoggerFactory logger)
+        {
+            this.Logger = logger.CreateLogger("Api.Stats");
+        }
+
         /// <summary>
         /// Redirect the incoming request to a new outgoing URL.
         /// </summary>
@@ -27,9 +41,9 @@ namespace UrlShortify.Controllers
                     uri = new Uri(entry.Url);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // TODO: Log to console/env.
+                this.Logger.LogError(ex, ex.Message);
             }
 
             if (uri == null)

@@ -3,6 +3,7 @@ using System.Web;
 using FancyRedirect.Attributes;
 using FancyRedirect.DataHandlers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace UrlShortify.Controllers
 {
@@ -10,6 +11,19 @@ namespace UrlShortify.Controllers
     [ApiController]
     public class RevealController : ControllerBase
     {
+        /// <summary>
+        /// Local logger.
+        /// </summary>
+        private readonly ILogger Logger;
+
+        /// <summary>
+        /// Setup logger.
+        /// </summary>
+        public RevealController(ILoggerFactory logger)
+        {
+            this.Logger = logger.CreateLogger("Api.Stats");
+        }
+
         /// <summary>
         /// Reveal a shortened URL.
         /// </summary>
@@ -42,9 +56,9 @@ namespace UrlShortify.Controllers
                     fullUrl = new Uri(entry.Url);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // TODO: Log to console/env.
+                this.Logger.LogError(ex, ex.Message);
             }
 
             if (fullUrl == null)

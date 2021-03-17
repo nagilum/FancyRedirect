@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FancyRedirect.Attributes;
 using FancyRedirect.DataHandlers;
+using Microsoft.Extensions.Logging;
 
 namespace FancyRedirect.Controllers
 {
@@ -9,6 +11,19 @@ namespace FancyRedirect.Controllers
     [ApiController]
     public class StatsController : ControllerBase
     {
+        /// <summary>
+        /// Local logger.
+        /// </summary>
+        private readonly ILogger Logger;
+
+        /// <summary>
+        /// Setup logger.
+        /// </summary>
+        public StatsController(ILoggerFactory logger)
+        {
+            this.Logger = logger.CreateLogger("Api.Stats");
+        }
+
         /// <summary>
         /// Get a list of all entries in the database.
         /// </summary>
@@ -22,9 +37,9 @@ namespace FancyRedirect.Controllers
             {
                 list = StorageHandler.GetAll();
             }
-            catch
+            catch (Exception ex)
             {
-                // TODO: Log to console/env.
+                this.Logger.LogError(ex, ex.Message);
             }
 
             if (list == null)

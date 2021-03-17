@@ -24,37 +24,33 @@ namespace FancyRedirect.DataHandlers
         /// </summary>
         public static void CreateTable()
         {
+            // Define the full storaget path.
             StoragePath = Path.Combine(
                 Directory.GetCurrentDirectory(),
                 "storage.sqlite.db");
 
+            // If the file already exist, skip this.
             if (File.Exists(StoragePath))
             {
                 return;
             }
 
-            try
-            {
-                using var connection = new SqliteConnection($"Data Source={StoragePath}");
-                connection.Open();
+            // Open the connection to the file and create the table, if it doesn't exist yet.
+            using var connection = new SqliteConnection($"Data Source={StoragePath}");
+            connection.Open();
 
-                using var command = connection.CreateCommand();
-                command.CommandText =
-                    "CREATE TABLE IF NOT EXISTS UrlEntries (" +
-                    "  [Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
-                    "  [Created] NVARCHAR(32) NOT NULL," +
-                    "  [LastUsed] NVARCHAR(32)," +
-                    "  [Hits] INTEGER DEFAULT 0," +
-                    "  [Code] NVARCHAR(32) NOT NULL," +
-                    "  [Url] NVARCHAR(2048) NOT NULL" +
-                    ");";
+            using var command = connection.CreateCommand();
+            command.CommandText =
+                "CREATE TABLE IF NOT EXISTS UrlEntries (" +
+                "  [Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+                "  [Created] NVARCHAR(32) NOT NULL," +
+                "  [LastUsed] NVARCHAR(32)," +
+                "  [Hits] INTEGER DEFAULT 0," +
+                "  [Code] NVARCHAR(32) NOT NULL," +
+                "  [Url] NVARCHAR(2048) NOT NULL" +
+                ");";
 
-                command.ExecuteNonQuery();
-            }
-            catch
-            {
-                // TODO: Log to console/env.
-            }
+            command.ExecuteNonQuery();
         }
 
         /// <summary>
