@@ -3,7 +3,6 @@ bin/
 obj/
 Properties/
 
-appsettings.*
 *.user
 storage.json
 storage.sqlite.db
