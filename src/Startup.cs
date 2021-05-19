@@ -35,17 +35,6 @@ namespace UrlShortify
             {
                 endpoints.MapControllers();
             });
-
-            app.Use((context, func) =>
-            {
-                context.Response.Headers["Strict-Transport-Security"] = "max-age=31536000";
-                context.Response.Headers["Content-Security-Policy"] = "default-src 'none'";
-                context.Response.Headers["X-Frame-Options"] = "SAMEORIGIN";
-                context.Response.Headers["X-Content-Type-Options"] = "nosniff";
-                context.Response.Headers["Referrer-Policy"] = "same-origin";
-
-                return func.Invoke();
-            });
         }
     }
 }
